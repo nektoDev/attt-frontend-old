@@ -3,9 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import {Ng2TableModule} from 'ng2-table/ng2-table';
-
 import { AppComponent } from './app.component';
+import { TorrentsModule } from './torrents/torrents.module'
 
 @NgModule({
   declarations: [
@@ -15,7 +14,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    Ng2TableModule,
+    TorrentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
