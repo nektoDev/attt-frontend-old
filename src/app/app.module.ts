@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { TorrentsModule } from './torrents/torrents.module'
+import {SettingsModule} from "./settings/settings.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { TorrentsModule } from './torrents/torrents.module'
     BrowserModule,
     FormsModule,
     HttpModule,
-    TorrentsModule
+    TorrentsModule,
+    SettingsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
