@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TableData} from './table-data';
+import {TorrentInfo, TorrentsService} from "./torrents.service";
 
 @Component({
   selector: 'app-torrents',
@@ -8,14 +9,12 @@ import {TableData} from './table-data';
 })
 export class TorrentsComponent implements OnInit {
 
-  public rows: Array<any> = [];
   public columns: Array<any> = [
-    {title: 'Name', name: 'name'},
-    {title: 'Position', name: 'position', sort: '',},
-    {title: 'Office', className: ['office-header', 'text-success'], name: 'office', sort: 'asc'},
-    {title: 'Extn.', name: 'ext', sort: ''},
-    {title: 'Start date', name: 'startDate'},
-    {title: 'Salary ($)', name: 'salary'}
+    {title: 'name', name: 'name'},
+    {title: 'URL', className: ['text-success'], name: 'url'},
+    {title: 'Tracked', name: 'tracked'},
+    {title: 'Last Checked', name: 'lastCheckDateHuman'},
+    {title: 'Last Updated', name: 'lastUpdateDateHuman'}
   ];
 
   public config: any = {
@@ -23,12 +22,17 @@ export class TorrentsComponent implements OnInit {
     className: ['table-striped', 'table-bordered']
   };
 
-  private data: Array<any> = TableData;
+  private torrents: Array<TorrentInfo> = [];
+  private errorMessage;
 
-  public constructor() {
+  public constructor(private torrensService: TorrentsService) {
   }
 
   public ngOnInit(): void {
+    this.torrensService.getTorrents().subscribe(
+      torrents => this.torrents = <TorrentInfo[]>torrents,
+      error => this.errorMessage = <any>error
+    );
     this.onChangeTable(this.config);
   }
 
@@ -71,8 +75,9 @@ export class TorrentsComponent implements OnInit {
     if (config.sorting) {
       Object.assign(this.config.sorting, config.sorting);
     }
+    console.log(this.torrents);
 
-    this.rows = this.changeSort(this.data, this.config);
+    this.torrents = this.changeSort(this.torrents, this.config);
   }
 
   public onCellClick(data: any): any {
