@@ -11,8 +11,8 @@ export class TorrentsComponent implements OnInit {
 
   public columns: Array<any> = [
     {title: 'name', name: 'name'},
-    {title: 'URL', className: ['text-success'], name: 'url'},
-    {title: 'Tracked', name: 'tracked'},
+    {title: 'URL', name: 'url', type: "url"},
+    {title: 'Tracked', name: 'tracked', type: "checkbox"},
     {title: 'Last Checked', name: 'lastCheckDateHuman'},
     {title: 'Last Updated', name: 'lastUpdateDateHuman'}
   ];

@@ -23,7 +23,7 @@ export class TorrentInfo {
   constructor(object: any) {
     this.id = object.id;
     this.hash = object.hash;
-    this.url = '<a href='+object.url+'>'+object.url+'</a>';
+    this.url = object.url;
     this.name = object.name;
     this.magnet = object.magnet;
     this.downloadDir = object.downloadDir;

@@ -1,9 +1,37 @@
-<h1>
-  torrents works!
-</h1>
-<ng-table [config]="config"
-          (tableChanged)="onChangeTable(config)"
-          (cellClicked)="onCellClick($event)"
-          [rows]="torrents"
-          [columns]="columns">
-</ng-table>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>
+        torrents works!
+      </h1>
+
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Panel heading</div>
+        <!-- Table -->
+        <table class="table">
+          <thead>
+          <tr>
+            <th *ngFor="let column of columns">{{column.title}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let t of torrents">
+            <td *ngFor="let column of columns" [ngSwitch]="column.type">
+
+              <div *ngSwitchCase="'checkbox'" class="ui check">
+                <input type="checkbox" class=" text-center " [checked]="t[column.name]">
+              </div>
+              <div *ngSwitchCase="'url'">
+                <a href="{{t[column.name]}}">{{t[column.name]}}</a>
+              </div>
+              <span *ngSwitchDefault class="word-break">{{t[column.name]}}</span>
+
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

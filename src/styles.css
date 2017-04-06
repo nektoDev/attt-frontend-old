@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+.word-break {
+  -ms-word-break: break-all;
+  word-break: break-all;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
