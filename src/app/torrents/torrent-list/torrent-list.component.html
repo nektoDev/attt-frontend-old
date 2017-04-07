@@ -20,6 +20,8 @@
         <div *ngSwitchCase="'check-mark'" class="center-block">
           <span class="glyphicon glyphicon-ok text-success center-block center-text" *ngIf="t[column.name]"></span>
         </div>
+
+        <span *ngSwitchCase="'date'">{{t[column.name] | date:'dd.MM.y hh:mm'}}</span>
         <span *ngSwitchDefault class="word-break">{{t[column.name]}}</span>
 
       </td>

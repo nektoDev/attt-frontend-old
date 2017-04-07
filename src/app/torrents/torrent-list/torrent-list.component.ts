@@ -15,11 +15,13 @@ export class TorrentListComponent implements OnInit {
 
 
   public columns: Array<any> = [
-    {title: 'name', name: 'name'},
-    {title: 'URL', name: 'url', type: "url"},
-    {title: 'Tracked', name: 'tracked', type: "check-mark"},
-    {title: 'Last Checked', name: 'lastCheckDateHuman'},
-    {title: 'Last Updated', name: 'lastUpdateDateHuman'}
+    {title: 'name', name: 'name', sort: ''},
+    {title: 'Tracked', name: 'tracked', type: "check-mark", sort: 'desc'},
+    {title: 'URL', name: 'url', type: "url", sort: ''},
+    {title: 'Added', name: 'addDate', type: "date", sort: ''},
+    {title: 'Finished', name: 'finishDate', type: "date", sort: ''},
+    {title: 'Last Checked', name: 'lastCheckDate', type: "date", sort: ''},
+    {title: 'Last Updated', name: 'lastUpdateDate', type: "date", sort: ''}
   ];
 
   public config: any = {
@@ -33,10 +35,9 @@ export class TorrentListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.torrensService.listTorrents().subscribe(
-      torrents => this.torrents = <TorrentInfo[]>torrents,
+      torrents => {this.torrents = <TorrentInfo[]>torrents; this.onChangeTable(this.config);},
       error => this.errorMessage = <any>error
     );
-    this.onChangeTable(this.config);
   }
 
   public changeSort(data: any, config: any): any {
@@ -55,9 +56,11 @@ export class TorrentListComponent implements OnInit {
       }
     }
 
+
     if (!columnName) {
       return data;
     }
+    console.log(columnName)
 
     // simple sorting
     return data.sort((previous: any, current: any) => {
@@ -81,6 +84,7 @@ export class TorrentListComponent implements OnInit {
     console.log(this.torrents);
 
     this.torrents = this.changeSort(this.torrents, this.config);
+    console.log(this.torrents);
   }
 
   public onRowClick(t: TorrentInfo): any {

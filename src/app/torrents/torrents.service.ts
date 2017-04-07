@@ -23,9 +23,6 @@ export class TorrentInfo {
   lastCheckDate: number;
   lastUpdateDate: number;
 
-  lastCheckDateHuman: string;
-  lastUpdateDateHuman: string;
-
   constructor(object: any) {
     this.id = object.id;
     this.hash = object.hash;
@@ -40,9 +37,6 @@ export class TorrentInfo {
     this.tracked = object.tracked;
     this.lastCheckDate = object.lastCheckDate;
     this.lastUpdateDate = object.lastUpdateDate;
-
-    this.lastCheckDateHuman = object.lastCheckDate ? DATE_PIPE.transform(object.lastCheckDate, 'yMMdd HH:mm:ss') : '';
-    this.lastUpdateDateHuman = object.lastUpdateDate ? DATE_PIPE.transform(object.lastUpdateDate, 'yMMdd HH:mm:ss') : '';
   }
 
 }
