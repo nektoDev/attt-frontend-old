@@ -32,7 +32,7 @@ export class TorrentListComponent implements OnInit {
 
 
   public ngOnInit(): void {
-    this.torrensService.getTorrents().subscribe(
+    this.torrensService.listTorrents().subscribe(
       torrents => this.torrents = <TorrentInfo[]>torrents,
       error => this.errorMessage = <any>error
     );

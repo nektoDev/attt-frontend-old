@@ -3,7 +3,7 @@ import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {DatePipe} from "@angular/common";
 
-const DATE_PIPE=new DatePipe("ru");
+const DATE_PIPE = new DatePipe("ru");
 
 export class TorrentInfo {
   id: string;
@@ -32,7 +32,7 @@ export class TorrentInfo {
     this.lastUpdateDate = object.lastUpdateDate;
 
     this.lastCheckDateHuman = object.lastCheckDate ? DATE_PIPE.transform(object.lastCheckDate, 'yMMdd HH:mm:ss') : '';
-    this.lastUpdateDateHuman = object.lastUpdateDate ? DATE_PIPE.transform(object.lastUpdateDate, 'yMMdd HH:mm:ss'): '';
+    this.lastUpdateDateHuman = object.lastUpdateDate ? DATE_PIPE.transform(object.lastUpdateDate, 'yMMdd HH:mm:ss') : '';
 
   }
 
@@ -47,13 +47,19 @@ export class TorrentsService {
   constructor(private http: Http) {
   }
 
-  getTorrents() {
+  listTorrents() {
     return this.http.get(TORRENTS_URL).map(response => {
-      let result: TorrentInfo[] = [];
-      <any[]> response.json().forEach(t => result.push(new TorrentInfo(t)));
-      return result;
-    }
+        let result: TorrentInfo[] = [];
+        <any[]> response.json().forEach(t => result.push(new TorrentInfo(t)));
+        return result;
+      }
     ).catch(this.handleError);
+  }
+
+  getTorrent(id: string) {
+    return this.http.get(TORRENTS_URL + "/" + id)
+      .map(response => new TorrentInfo(response.json()))
+      .catch(this.handleError);
   }
 
   private handleError(error: Response | any) {

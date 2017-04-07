@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import {Ng2TableModule} from "ng2-table";
 import { TorrentsComponent } from './torrents.component';
 import {TorrentsRoutingModule} from "./torrents-routing.module";
-import { TorrentsService } from './torrents.service';
 import { TorrentListComponent } from './torrent-list/torrent-list.component';
 import { TorrentDetailComponent } from './torrent-detail/torrent-detail.component';
 
