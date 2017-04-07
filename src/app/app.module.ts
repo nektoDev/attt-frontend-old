@@ -18,7 +18,8 @@ import {Router} from "@angular/router";
     FormsModule,
     HttpModule,
     TorrentsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

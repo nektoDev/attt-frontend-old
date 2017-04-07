@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {ActivatedRoute} from "@angular/router";
 import {TorrentInfo, TorrentsService} from "../torrents.service";
 
 @Component({
   selector: 'app-torrent-detail',
   templateUrl: './torrent-detail.component.html',
-  styleUrls: ['./torrent-detail.component.css']
+  styleUrls: ['./torrent-detail.component.css'],
 })
 export class TorrentDetailComponent implements OnInit {
 
@@ -22,6 +23,11 @@ export class TorrentDetailComponent implements OnInit {
       torrent => this.torrent = torrent,
       error => this.error = error
     );
+  }
+
+  onSubmit() {
+    console.log(this.torrent)
+    this.torrentsService.saveTorrent(this.torrent).subscribe(r => console.log(r));
   }
 
 }

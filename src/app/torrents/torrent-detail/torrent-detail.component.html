@@ -1,6 +1,80 @@
-<p>
-  torrent-detail works!
-</p>
-<div *ngIf="torrent">
-  <h1>{{torrent}}</h1>
+<div class="row">
+  <div class="col-md-6">
+    <div *ngIf="torrent">
+      <h1>{{torrent.name}}</h1>
+      <form class="form-horizontal" #torrentForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required [(ngModel)]="torrent.name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">id</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="id" name="id" placeholder="id" [(ngModel)]="torrent.id">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">hash</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="hash" name="hash" placeholder="hash" [(ngModel)]="torrent.hash">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">url</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="url" name="url" placeholder="url" [(ngModel)]="torrent.url">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">magnet</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="magnet" name="magnet" placeholder="magnet" [(ngModel)]="torrent.magnet">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">downloadDir</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="downloadDir" name="downloadDir" placeholder="downloadDir" [(ngModel)]="torrent.downloadDir">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">addDate</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="addDate" name="addDate" placeholder="addDate" [(ngModel)]="torrent.addDate">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">finishDate</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="finishDate" name="finishDate" placeholder="finishDate" [(ngModel)]="torrent.finishDate">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">tracked</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="tracked" name="tracked" placeholder="tracked" [(ngModel)]="torrent.tracked">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">lastCheckDate</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="lastCheckDate" name="lastCheckDate" placeholder="lastCheckDate" [(ngModel)]="torrent.lastCheckDate">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">lastUpdateDate</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="lastUpdateDate" name="lastUpdateDate" placeholder="lastUpdateDate" [(ngModel)]="torrent.lastUpdateDate">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!torrentForm.form.valid">Save</button>
+      </form>
+    </div>
+  </div>
 </div>
+
