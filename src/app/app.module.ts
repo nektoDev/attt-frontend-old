@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { TorrentsModule } from './torrents/torrents.module'
 
 import { AppRoutingModule }   from './app-routing.module';
+import {Router} from "@angular/router";
 
 @NgModule({
   declarations: [

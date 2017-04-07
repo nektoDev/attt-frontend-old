@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TorrentInfo, TorrentsService} from "../torrents.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-torrent-list',
@@ -8,7 +9,9 @@ import {TorrentInfo, TorrentsService} from "../torrents.service";
 })
 export class TorrentListComponent implements OnInit {
 
-  constructor(private torrensService: TorrentsService) { }
+  constructor(private torrensService: TorrentsService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
 
   public columns: Array<any> = [
@@ -80,8 +83,9 @@ export class TorrentListComponent implements OnInit {
     this.torrents = this.changeSort(this.torrents, this.config);
   }
 
-  public onCellClick(data: any): any {
-    console.log(data);
+  public onCellClick(t: TorrentInfo): any {
+    console.log(t.id);
+    this.router.navigate([t.id], {relativeTo: this.route});
   }
 
 }
