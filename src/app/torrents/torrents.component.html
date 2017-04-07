@@ -1,38 +1,10 @@
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
+      <h1>{{title}}</h1>
+      <router-outlet></router-outlet>
 
-      <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading"><b>{{title}}</b></div>
-        <!-- Table -->
-        <table class="table table-striped table-hover">
-          <thead>
-          <tr>
-            <th *ngFor="let column of columns">{{column.title}}</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let t of torrents" class="pointer">
-
-            <td *ngFor="let column of columns" [ngSwitch]="column.type">
-
-              <div *ngSwitchCase="'checkbox'" class="ui check">
-                <input type="checkbox" class="text-center" [checked]="t[column.name]">
-              </div>
-              <div *ngSwitchCase="'url'">
-                <a href="{{t[column.name]}}">{{t[column.name]}}</a>
-              </div>
-              <div *ngSwitchCase="'check-mark'" class="center-block">
-                <span class="glyphicon glyphicon-ok text-success center-block center-text" *ngIf="t[column.name]"></span>
-              </div>
-              <span *ngSwitchDefault class="word-break">{{t[column.name]}}</span>
-
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
   </div>
 </div>

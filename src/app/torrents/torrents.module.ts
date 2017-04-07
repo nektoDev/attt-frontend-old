@@ -4,6 +4,7 @@ import {Ng2TableModule} from "ng2-table";
 import { TorrentsComponent } from './torrents.component';
 import {TorrentsRoutingModule} from "./torrents-routing.module";
 import { TorrentsService } from './torrents.service';
+import { TorrentListComponent } from './torrent-list/torrent-list.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,6 @@ import { TorrentsService } from './torrents.service';
     Ng2TableModule,
     TorrentsRoutingModule
   ],
-  declarations: [TorrentsComponent],
-  providers: [TorrentsService],
+  declarations: [TorrentsComponent, TorrentListComponent]
 })
 export class TorrentsModule { }
