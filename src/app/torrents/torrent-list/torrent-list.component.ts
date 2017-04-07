@@ -83,9 +83,9 @@ export class TorrentListComponent implements OnInit {
     this.torrents = this.changeSort(this.torrents, this.config);
   }
 
-  public onCellClick(t: TorrentInfo): any {
+  public onRowClick(t: TorrentInfo): any {
     console.log(t.id);
-    this.router.navigate([t.id], {relativeTo: this.route});
+    this.router.navigateByUrl("torrents/"+t.id);
   }
 
 }

@@ -7,7 +7,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let t of torrents" class="pointer" (click)="onCellClick(t)">
+    <tr *ngFor="let t of torrents" class="pointer" (click)="onRowClick(t)">
 
       <td *ngFor="let column of columns" [ngSwitch]="column.type">
 

@@ -3,9 +3,9 @@ import {RouterModule, Routes} from "@angular/router";
 import {AppComponent} from "./app.component";
 
 export const routes: Routes = [
-  { path: 'torrents', loadChildren: 'app/torrents/torrents.module#TorrentsModule' },
+  { path: '', redirectTo: "torrents", pathMatch: 'full'},
   { path: 'settings', loadChildren: 'app/settings/settings.module#SettingsModule' },
-  { path: '', component: AppComponent, pathMatch: 'full'},
+  { path: 'torrents', loadChildren: 'app/torrents/torrents.module#TorrentsModule' },
 ];
 
 @NgModule({

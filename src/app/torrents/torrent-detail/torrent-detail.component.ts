@@ -11,13 +11,17 @@ export class TorrentDetailComponent implements OnInit {
 
   public torrent: TorrentInfo;
   public id: string;
+  public error: any;
 
   constructor(private route: ActivatedRoute,
               private torrentsService: TorrentsService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-
+    this.torrentsService.getTorrent(this.id).subscribe(
+      torrent => this.torrent = torrent,
+      error => this.error = error
+    );
   }
 
 }
