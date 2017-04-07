@@ -7,3 +7,11 @@
   -moz-hyphens: auto;
   hyphens: auto;
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+.center-text {
+  text-align: center;
+}

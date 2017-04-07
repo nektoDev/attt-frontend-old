@@ -9,10 +9,12 @@ import {TorrentInfo, TorrentsService} from "./torrents.service";
 })
 export class TorrentsComponent implements OnInit {
 
+  public title: string = "Torrents";
+
   public columns: Array<any> = [
     {title: 'name', name: 'name'},
     {title: 'URL', name: 'url', type: "url"},
-    {title: 'Tracked', name: 'tracked', type: "checkbox"},
+    {title: 'Tracked', name: 'tracked', type: "check-mark"},
     {title: 'Last Checked', name: 'lastCheckDateHuman'},
     {title: 'Last Updated', name: 'lastUpdateDateHuman'}
   ];
