@@ -118,7 +118,14 @@ export class TorrentListComponent implements OnInit {
     this.deleteModal.hide();
     this.deleteModalTorrent = null;
     this.busy = this.torrensService.deleteTorrent(t.id).subscribe(
-      next => this.initTorrents()
+      next => {
+        this.initTorrents();
+        this.alerts.push({
+          type: 'warning',
+          msg: "Torrent deleted successfully",
+          timeout: 5000
+        });
+      }
     );
   }
 
