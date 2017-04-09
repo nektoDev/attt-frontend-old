@@ -3,7 +3,6 @@ import {TorrentInfo, TorrentsService} from "../torrents.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {ModalDirective} from "ng2-bootstrap";
-import {sanitizeHtml} from "@angular/platform-browser/src/security/html_sanitizer";
 
 @Component({
   selector: 'app-torrent-list',
@@ -92,6 +91,10 @@ export class TorrentListComponent implements OnInit {
     this.torrents = this.changeSort(this.torrents, this.config);
   }
 
+  public newTorrent() {
+    this.router.navigateByUrl("torrents/");
+  }
+
   public editTorrent(t: TorrentInfo): any {
     this.router.navigateByUrl("torrents/" + t.id);
   }
@@ -122,7 +125,7 @@ export class TorrentListComponent implements OnInit {
       next => {
         this.initTorrents();
         this.alerts.push({
-          type: 'warning',
+          type: 'danger',
           msg: "Torrent deleted successfully",
           timeout: 5000
         });

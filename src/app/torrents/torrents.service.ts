@@ -24,6 +24,10 @@ export class TorrentInfo {
   lastUpdateDate: Date;
 
   constructor(object: any) {
+    if (!object) {
+      this.watchers = [];
+      return;
+    }
     this.id = object.id;
     this.hash = object.hash;
     this.url = object.url;
