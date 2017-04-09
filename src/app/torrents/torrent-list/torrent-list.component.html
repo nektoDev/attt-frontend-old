@@ -37,10 +37,29 @@
         <div class="btn-group nowrap" role="group">
           <button type="button" class="btn btn-default btn-sm" (click)="editTorrent(t)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
           <button type="button" class="btn btn-default btn-sm" (click)="refreshTorrent(t.id)"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
-          <button type="button" class="btn btn-default btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+          <button type="button" class="btn btn-default btn-sm btn-danger" (click)="showDeleteModal(t)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
         </div>
       </td>
     </tr>
     </tbody>
   </table>
-</div>
+
+  <div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="DeleteModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Delete torrent</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" *ngIf="deleteModalTorrent">
+          Are you sure want to delete "{{deleteModalTorrent.name}}"?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="deleteTorrent(deleteModalTorrent)">Delete</button>
+        </div>
+      </div>
+    </div>
+
+  </div>

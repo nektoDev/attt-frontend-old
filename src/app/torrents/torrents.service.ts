@@ -77,6 +77,10 @@ export class TorrentsService {
     return this.http.get(TORRENTS_URL + "/forceCheck");
   }
 
+  deleteTorrent(id: string) {
+    return this.http.delete(TORRENTS_URL + "?id=" + id);
+  }
+
   private handleError(error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;

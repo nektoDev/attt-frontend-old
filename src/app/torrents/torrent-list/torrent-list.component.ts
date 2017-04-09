@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TorrentInfo, TorrentsService} from "../torrents.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {ModalDirective} from "ng2-bootstrap";
 
 @Component({
   selector: 'app-torrent-list',
@@ -33,6 +34,9 @@ export class TorrentListComponent implements OnInit {
   private torrents: Array<TorrentInfo> = [];
   private errorMessage;
   busy: Subscription;
+
+  @ViewChild('deleteModal') public deleteModal: ModalDirective;
+  deleteModalTorrent: TorrentInfo;
 
   public ngOnInit(): void {
     this.initTorrents();
@@ -89,6 +93,19 @@ export class TorrentListComponent implements OnInit {
 
   public refreshTorrent(t: TorrentInfo): any {
     this.busy = this.torrensService.refreshTorrent(t.id).subscribe(
+      next => this.initTorrents()
+    );
+  }
+
+  public showDeleteModal(t: TorrentInfo) {
+    this.deleteModalTorrent = t;
+    this.deleteModal.show();
+  }
+
+  public deleteTorrent(t: TorrentInfo): any {
+    this.deleteModal.hide();
+    this.deleteModalTorrent = null;
+    this.busy = this.torrensService.deleteTorrent(t.id).subscribe(
       next => this.initTorrents()
     );
   }
