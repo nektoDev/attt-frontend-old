@@ -25,7 +25,7 @@ export class TorrentDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    this.torrentsService.saveTorrent(this.torrent);
+    this.torrentsService.saveTorrent(this.torrent).subscribe();
   }
 
 }
