@@ -8,6 +8,7 @@ import { TorrentsModule } from './torrents/torrents.module'
 
 import { AppRoutingModule }   from './app-routing.module';
 import {Router} from "@angular/router";
+import {BusyModule} from 'angular2-busy';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {Router} from "@angular/router";
     HttpModule,
     TorrentsModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BusyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

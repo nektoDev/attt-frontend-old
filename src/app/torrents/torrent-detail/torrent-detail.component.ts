@@ -1,5 +1,4 @@
 import { Component, OnInit,  } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import {ActivatedRoute} from "@angular/router";
 import {TorrentInfo, TorrentsService} from "../torrents.service";
 

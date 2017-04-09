@@ -31,12 +31,16 @@ export class TorrentInfo {
     this.magnet = object.magnet;
     this.downloadDir = object.downloadDir;
 
-    this.addDate = object.addDate;
-    this.finishDate = object.finishDate;
+    this.addDate = this.parseDate(object.addDate);
+    this.finishDate = this.parseDate(object.finishDate);
 
     this.tracked = object.tracked;
-    this.lastCheckDate = object.lastCheckDate;
-    this.lastUpdateDate = object.lastUpdateDate;
+    this.lastCheckDate = this.parseDate(object.lastCheckDate);
+    this.lastUpdateDate = this.parseDate(object.lastUpdateDate);
+  }
+
+  private parseDate(date: number) {
+    return date ? new Date(date) : null;
   }
 
 }
@@ -67,6 +71,10 @@ export class TorrentsService {
 
   saveTorrent(t: TorrentInfo) {
     return this.http.post(TORRENTS_URL, [t]);
+  }
+
+  refreshTorrent(id: string) {
+    return this.http.get(TORRENTS_URL + "/forceCheck");
   }
 
   private handleError(error: Response | any) {

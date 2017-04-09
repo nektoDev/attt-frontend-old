@@ -8,6 +8,10 @@
   hyphens: auto;
 }
 
+.nowrap {
+  white-space: nowrap;
+}
+
 .pointer {
   cursor: pointer;
 }

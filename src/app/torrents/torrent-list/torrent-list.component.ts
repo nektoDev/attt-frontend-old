@@ -15,17 +15,17 @@ export class TorrentListComponent implements OnInit {
 
 
   public columns: Array<any> = [
-    {title: 'name', name: 'name', sort: ''},
+    {title: 'name', name: 'name', sort: 'asc', size: 3},
     {title: 'Tracked', name: 'tracked', type: "check-mark", sort: 'desc'},
-    {title: 'URL', name: 'url', type: "url", sort: ''},
-    {title: 'Added', name: 'addDate', type: "date", sort: ''},
-    {title: 'Finished', name: 'finishDate', type: "date", sort: ''},
-    {title: 'Last Checked', name: 'lastCheckDate', type: "date", sort: ''},
-    {title: 'Last Updated', name: 'lastUpdateDate', type: "date", sort: ''}
+    {title: 'URL', name: 'url', type: "url", sort: 'asc'},
+    {title: 'Added', name: 'addDate', type: "date", sort: 'asc'},
+    {title: 'Finished', name: 'finishDate', type: "date", sort: 'asc'},
+    {title: 'Last Checked', name: 'lastCheckDate', type: "date", sort: 'asc'},
+    {title: 'Last Updated', name: 'lastUpdateDate', type: "date", sort: 'asc'}
   ];
 
   public config: any = {
-    sorting: {columns: this.columns},
+    sorting: {name: 'tracked', sort: 'desc'},
     className: ['table-striped', 'table-bordered']
   };
 
@@ -34,8 +34,15 @@ export class TorrentListComponent implements OnInit {
 
 
   public ngOnInit(): void {
+    this.initTorrents();
+  }
+
+  private initTorrents() {
     this.torrensService.listTorrents().subscribe(
-      torrents => {this.torrents = <TorrentInfo[]>torrents; this.onChangeTable(this.config);},
+      torrents => {
+        this.torrents = <TorrentInfo[]>torrents;
+        this.onChangeTable(this.config);
+      },
       error => this.errorMessage = <any>error
     );
   }
@@ -45,17 +52,8 @@ export class TorrentListComponent implements OnInit {
       return data;
     }
 
-    let columns = this.config.sorting.columns || [];
-    let columnName: string = void 0;
-    let sort: string = void 0;
-
-    for (let i = 0; i < columns.length; i++) {
-      if (columns[i].sort !== '' && columns[i].sort !== false) {
-        columnName = columns[i].name;
-        sort = columns[i].sort;
-      }
-    }
-
+    let columnName: string =  this.config.sorting.name;
+    let sort: string =  this.config.sorting.sort;
 
     if (!columnName) {
       return data;
@@ -84,8 +82,37 @@ export class TorrentListComponent implements OnInit {
     this.torrents = this.changeSort(this.torrents, this.config);
   }
 
-  public onRowClick(t: TorrentInfo): any {
+  public editTorrent(t: TorrentInfo): any {
     this.router.navigateByUrl("torrents/"+t.id);
+  }
+
+  public refreshTorrent(t: TorrentInfo): any {
+    this.torrensService.refreshTorrent(t.id).subscribe(
+      next => this.initTorrents()
+    );
+  }
+
+  public getColumnSort(columnName: string) {
+
+    if (this.config.sorting) {
+      if (this.config.sorting.name === columnName) {
+        return this.config.sorting.sort;
+      }
+    }
+    return null;
+  }
+
+  public onHeaderClick(column: any) {
+
+    if (this.config.sorting) {
+      if (this.config.sorting.name === column.name) {
+        this.config.sorting.sort = this.config.sorting.sort === 'asc' ? 'desc' : 'asc';
+      } else {
+        Object.assign(this.config.sorting, column)
+      }
+    }
+
+    this.onChangeTable(this.config);
   }
 
 }

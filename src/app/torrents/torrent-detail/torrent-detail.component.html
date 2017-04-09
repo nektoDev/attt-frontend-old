@@ -6,20 +6,23 @@
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">id</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="id" name="id" placeholder="id" disabled [(ngModel)]="torrent.id">
+            <input type="text" class="form-control" id="id" name="id" placeholder="id" disabled
+                   [(ngModel)]="torrent.id">
           </div>
         </div>
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">hash</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="hash" name="hash" placeholder="hash" disabled [(ngModel)]="torrent.hash">
+            <input type="text" class="form-control" id="hash" name="hash" placeholder="hash" disabled
+                   [(ngModel)]="torrent.hash">
           </div>
         </div>
 
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">Name</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required [(ngModel)]="torrent.name">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required
+                   [(ngModel)]="torrent.name">
           </div>
         </div>
 
@@ -32,45 +35,55 @@
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">magnet</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="magnet" name="magnet" placeholder="magnet" [(ngModel)]="torrent.magnet">
+            <input type="text" class="form-control" id="magnet" name="magnet" placeholder="magnet"
+                   [(ngModel)]="torrent.magnet">
           </div>
         </div>
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">downloadDir</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="downloadDir" name="downloadDir" placeholder="downloadDir" [(ngModel)]="torrent.downloadDir">
+            <input type="text" class="form-control" id="downloadDir" name="downloadDir" placeholder="downloadDir"
+                   [(ngModel)]="torrent.downloadDir">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">tracked</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="tracked" name="tracked" placeholder="tracked"
+                   [(ngModel)]="torrent.tracked">
           </div>
         </div>
 
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">addDate</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="addDate" name="addDate" placeholder="addDate" [(ngModel)]="torrent.addDate">
+            <input type="text" class="form-control" id="addDate" name="addDate" placeholder="addDate"
+                   disabled
+                   [ngModel]="torrent.addDate | date:'dd.MM.y hh:mm:ss'">
           </div>
         </div>
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">finishDate</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="finishDate" name="finishDate" placeholder="finishDate" [(ngModel)]="torrent.finishDate">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="name" class="col-sm-2 control-label">tracked</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="tracked" name="tracked" placeholder="tracked" [(ngModel)]="torrent.tracked">
+            <input type="text" class="form-control" id="finishDate" name="finishDate" placeholder="finishDate"
+                   disabled
+                   [ngModel]="torrent.finishDate | date:'dd.MM.y hh:mm:ss'">
           </div>
         </div>
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">lastCheckDate</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="lastCheckDate" name="lastCheckDate" placeholder="lastCheckDate" [(ngModel)]="torrent.lastCheckDate">
+            <input type="text" class="form-control" id="lastCheckDate" name="lastCheckDate" placeholder="lastCheckDate"
+                   disabled
+                   [ngModel]="torrent.lastCheckDate | date:'dd.MM.y hh:mm:ss'">
           </div>
         </div>
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">lastUpdateDate</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="lastUpdateDate" name="lastUpdateDate" placeholder="lastUpdateDate" [(ngModel)]="torrent.lastUpdateDate">
+            <input type="text" class="form-control" id="lastUpdateDate" name="lastUpdateDate" placeholder="lastUpdateDate"
+                   disabled
+                   [ngModel]="torrent.lastUpdateDate | date:'dd.MM.y hh:mm:ss'">
           </div>
         </div>
 
