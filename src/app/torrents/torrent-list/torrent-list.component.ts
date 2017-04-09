@@ -1,8 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {TorrentInfo, TorrentsService} from "../torrents.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {ModalDirective} from "ng2-bootstrap";
+import {sanitizeHtml} from "@angular/platform-browser/src/security/html_sanitizer";
 
 @Component({
   selector: 'app-torrent-list',
@@ -13,7 +14,8 @@ export class TorrentListComponent implements OnInit {
 
   constructor(private torrensService: TorrentsService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+  }
 
 
   public columns: Array<any> = [
@@ -34,6 +36,8 @@ export class TorrentListComponent implements OnInit {
   private torrents: Array<TorrentInfo> = [];
   private errorMessage;
   busy: Subscription;
+
+  alerts = [];
 
   @ViewChild('deleteModal') public deleteModal: ModalDirective;
   deleteModalTorrent: TorrentInfo;
@@ -57,8 +61,8 @@ export class TorrentListComponent implements OnInit {
       return data;
     }
 
-    let columnName: string =  this.config.sorting.name;
-    let sort: string =  this.config.sorting.sort;
+    let columnName: string = this.config.sorting.name;
+    let sort: string = this.config.sorting.sort;
 
     if (!columnName) {
       return data;
@@ -88,13 +92,20 @@ export class TorrentListComponent implements OnInit {
   }
 
   public editTorrent(t: TorrentInfo): any {
-    this.router.navigateByUrl("torrents/"+t.id);
+    this.router.navigateByUrl("torrents/" + t.id);
   }
 
   public refreshTorrent(t: TorrentInfo): any {
     let id = t ? t.id : "";
     this.busy = this.torrensService.refreshTorrent(id).subscribe(
-      next => this.initTorrents()
+      next => {
+        this.initTorrents();
+        this.alerts.push({
+          type: 'info',
+          msg: next.replace(/\n/g, "<br/>"),
+          timeout: 5000
+        });
+      }
     );
   }
 
