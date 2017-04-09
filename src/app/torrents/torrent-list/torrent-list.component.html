@@ -1,6 +1,7 @@
-<div class="panel panel-default">
+<div class="panel panel-default" >
+  <div [ngBusy]="busy"></div>
   <!-- Table -->
-  <table class="table table-striped">
+  <table class="table table-striped" >
     <thead>
     <tr>
       <th *ngFor="let column of columns" (click)="onHeaderClick(column)" class="nowrap">
@@ -14,8 +15,8 @@
       <th></th>
     </tr>
     </thead>
-    <tbody>
-    <tr *ngFor="let t of torrents">
+    <tbody >
+    <tr *ngFor="let t of torrents" >
 
       <td *ngFor="let column of columns" [ngSwitch]="column.type" class="col-md-{{column.size}}">
 

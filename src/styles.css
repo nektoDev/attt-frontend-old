@@ -19,3 +19,8 @@
 .center-text {
   text-align: center;
 }
+
+.ng-busy {
+  position: relative;
+  top: 0;
+}

@@ -7,8 +7,9 @@ import { AppComponent } from './app.component';
 import { TorrentsModule } from './torrents/torrents.module'
 
 import { AppRoutingModule }   from './app-routing.module';
-import {Router} from "@angular/router";
-import {BusyModule} from 'angular2-busy';
+import {BusyConfig, BusyModule} from 'angular2-busy'
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {BusyModule} from 'angular2-busy';
     TorrentsModule,
     AppRoutingModule,
     FormsModule,
-    BusyModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

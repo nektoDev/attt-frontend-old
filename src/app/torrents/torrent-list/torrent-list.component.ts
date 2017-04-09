@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TorrentInfo, TorrentsService} from "../torrents.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-torrent-list',
@@ -31,14 +32,14 @@ export class TorrentListComponent implements OnInit {
 
   private torrents: Array<TorrentInfo> = [];
   private errorMessage;
-
+  busy: Subscription;
 
   public ngOnInit(): void {
     this.initTorrents();
   }
 
   private initTorrents() {
-    this.torrensService.listTorrents().subscribe(
+    this.busy = this.torrensService.listTorrents().subscribe(
       torrents => {
         this.torrents = <TorrentInfo[]>torrents;
         this.onChangeTable(this.config);
@@ -87,7 +88,7 @@ export class TorrentListComponent implements OnInit {
   }
 
   public refreshTorrent(t: TorrentInfo): any {
-    this.torrensService.refreshTorrent(t.id).subscribe(
+    this.busy = this.torrensService.refreshTorrent(t.id).subscribe(
       next => this.initTorrents()
     );
   }
