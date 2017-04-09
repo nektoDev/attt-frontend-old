@@ -92,7 +92,8 @@ export class TorrentListComponent implements OnInit {
   }
 
   public refreshTorrent(t: TorrentInfo): any {
-    this.busy = this.torrensService.refreshTorrent(t.id).subscribe(
+    let id = t ? t.id : "";
+    this.busy = this.torrensService.refreshTorrent(id).subscribe(
       next => this.initTorrents()
     );
   }

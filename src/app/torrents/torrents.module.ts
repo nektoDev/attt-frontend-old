@@ -8,7 +8,7 @@ import { TorrentDetailComponent } from './torrent-detail/torrent-detail.componen
 import {FormsModule} from "@angular/forms";
 import {BusyModule} from "angular2-busy";
 import { ModalModule } from 'ng2-bootstrap/modal';
-
+import { AlertModule } from 'ng2-bootstrap/alert';
 
 @NgModule({
   imports: [
@@ -18,6 +18,7 @@ import { ModalModule } from 'ng2-bootstrap/modal';
     FormsModule,
     BusyModule,
     ModalModule.forRoot(),
+    AlertModule.forRoot(),
   ],
   declarations: [TorrentsComponent, TorrentListComponent, TorrentDetailComponent]
 })

@@ -74,7 +74,7 @@ export class TorrentsService {
   }
 
   refreshTorrent(id: string) {
-    return this.http.get(TORRENTS_URL + "/forceCheck");
+    return this.http.get(TORRENTS_URL + "/forceCheck/" + id);
   }
 
   deleteTorrent(id: string) {

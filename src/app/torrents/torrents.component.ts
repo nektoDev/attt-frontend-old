@@ -11,6 +11,7 @@ import {TorrentInfo, TorrentsService} from "./torrents.service";
 export class TorrentsComponent {
 
   public title: string = "Torrents";
+  public alerts: any = [];
   public constructor() {
   }
 }
