@@ -60,7 +60,6 @@ export class TorrentListComponent implements OnInit {
     if (!columnName) {
       return data;
     }
-    console.log(columnName)
 
     // simple sorting
     return data.sort((previous: any, current: any) => {
@@ -81,14 +80,11 @@ export class TorrentListComponent implements OnInit {
     if (config.sorting) {
       Object.assign(this.config.sorting, config.sorting);
     }
-    console.log(this.torrents);
 
     this.torrents = this.changeSort(this.torrents, this.config);
-    console.log(this.torrents);
   }
 
   public onRowClick(t: TorrentInfo): any {
-    console.log(t.id);
     this.router.navigateByUrl("torrents/"+t.id);
   }
 

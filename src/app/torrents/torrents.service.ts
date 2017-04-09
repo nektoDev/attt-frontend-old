@@ -16,12 +16,12 @@ export class TorrentInfo {
 
   watchers: string[];
 
-  addDate: number;
-  finishDate: number;
+  addDate: Date;
+  finishDate: Date;
 
   tracked: boolean;
-  lastCheckDate: number;
-  lastUpdateDate: number;
+  lastCheckDate: Date;
+  lastUpdateDate: Date;
 
   constructor(object: any) {
     this.id = object.id;
