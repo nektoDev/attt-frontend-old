@@ -25,7 +25,8 @@ export class TorrentListComponent implements OnInit {
     {title: 'Added', name: 'addDate', type: "date", sort: 'asc'},
     {title: 'Finished', name: 'finishDate', type: "date", sort: 'asc'},
     {title: 'Last Checked', name: 'lastCheckDate', type: "date", sort: 'asc'},
-    {title: 'Last Updated', name: 'lastUpdateDate', type: "date", sort: 'asc'}
+    {title: 'Last Updated', name: 'lastUpdateDate', type: "date", sort: 'asc'},
+    {title: 'Watchers', name: 'watchers', type: "list", sort: 'asc'}
   ];
 
   public config: any = {

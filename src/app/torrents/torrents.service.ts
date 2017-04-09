@@ -37,6 +37,8 @@ export class TorrentInfo {
     this.tracked = object.tracked;
     this.lastCheckDate = this.parseDate(object.lastCheckDate);
     this.lastUpdateDate = this.parseDate(object.lastUpdateDate);
+
+    this.watchers = object.watchers;
   }
 
   private parseDate(date: number) {

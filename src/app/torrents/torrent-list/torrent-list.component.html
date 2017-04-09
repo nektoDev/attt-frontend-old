@@ -42,6 +42,9 @@
         </div>
 
         <span *ngSwitchCase="'date'">{{t[column.name] | date:'dd.MM.y hh:mm'}}</span>
+        <span *ngSwitchCase="'list'">
+          <span *ngFor="let e of t[column.name]">{{e}}</span>
+        </span>
         <span *ngSwitchDefault class="word-break">{{t[column.name]}}</span>
       </td>
       <td>
