@@ -1,9 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs";
-import {DatePipe} from "@angular/common";
-
-const DATE_PIPE = new DatePipe("ru");
 
 export class TorrentInfo {
 
