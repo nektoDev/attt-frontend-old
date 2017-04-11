@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
+  public query: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.query = "Harry Potter"
+  }
+
+  onSubmit() {
+    this.query = ""
+
   }
 
 }

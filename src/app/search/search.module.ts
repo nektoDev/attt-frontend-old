@@ -3,11 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './search.component';
+import {FormsModule} from "@angular/forms";
+import {BusyModule} from "angular2-busy";
+import {AlertModule, ModalModule} from "ng2-bootstrap";
 
 @NgModule({
   imports: [
     CommonModule,
-    SearchRoutingModule
+    SearchRoutingModule,
+    FormsModule,
+    BusyModule,
+    ModalModule.forRoot(),
+    AlertModule.forRoot(),
   ],
   declarations: [SearchComponent]
 })

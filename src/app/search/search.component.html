@@ -1,3 +1,15 @@
 <h1>
   search works!
 </h1>
+<form class="form-horizontal" #searchForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" id="query" name="query"
+             placeholder="Search for..."
+             [(ngModel)]="query">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Search</button>
+      </span>
+    </div>
+  </div>
+</form>
