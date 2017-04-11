@@ -3,7 +3,14 @@
 </h1>
 <nav>
   <a routerLink="torrents" routerLinkActive="active">torrents</a>
-  <a routerLink="search"  routerLinkActive="active">search</a>
-  <a routerLink="settings"  routerLinkActive="active">settings</a>
+  <a routerLink="search" routerLinkActive="active">search</a>
+  <a routerLink="settings" routerLinkActive="active">settings</a>
 </nav>
-<router-outlet></router-outlet>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
