@@ -36,7 +36,7 @@ export class SearchService {
   search(q: string) {
     return this.http.get(TORRENTS_URL + "?q=" + q).map(response => {
       let result: FoundedTorrent[] = [];
-      <any[]> response.json().forEach(t => result.push(new FoundedTorrent(t)));
+      <any[]> response.json().rutracker.forEach(t => result.push(new FoundedTorrent(t)));
       return result;
     });
   }
