@@ -5,8 +5,9 @@ import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './search.component';
 import {FormsModule} from "@angular/forms";
 import {BusyModule} from "angular2-busy";
-import {AlertModule, ModalModule} from "ng2-bootstrap";
+import {AlertModule, BsDropdownModule, ModalModule} from "ng2-bootstrap";
 import { SearchService } from './search.service';
+import { BytePipe } from './byte.pipe';
 
 @NgModule({
   imports: [
@@ -16,8 +17,9 @@ import { SearchService } from './search.service';
     BusyModule,
     ModalModule.forRoot(),
     AlertModule.forRoot(),
+    BsDropdownModule.forRoot(),
   ],
-  declarations: [SearchComponent],
+  declarations: [SearchComponent, BytePipe],
   providers: [SearchService]
 })
 export class SearchModule { }

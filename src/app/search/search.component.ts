@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FoundedTorrent, SearchService} from "./search.service";
+import {Subscriber, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-search',
@@ -10,17 +11,18 @@ export class SearchComponent implements OnInit {
 
   public query: string;
   public founded: FoundedTorrent[];
+  public busy: Subscription;
 
   public columns: Array<any> = [
     {title: 'Name', name: 'name', sort: 'asc'},
     {title: 'URL', name: 'url', type: "url", sort: 'asc'},
     {title: 'Category', name: 'category', sort: 'asc'},
     {title: 'Seeders', name: 'seeders', sort: 'asc'},
-    {title: 'Size', name: 'size', sort: 'asc', pipes: ''},
+    {title: 'Size', name: 'size', sort: 'asc', type: 'byte'},
   ];
 
   public config: any = {
-    sorting: {name: 'size', sort: 'desc'},
+    sorting: {},
   };
 
   constructor(private searchService: SearchService) { }
@@ -30,7 +32,11 @@ export class SearchComponent implements OnInit {
   }
 
   onSubmit() {
-    this.searchService.search(this.query).subscribe( r => this.founded = r);
+    this.busy = this.searchService.search(this.query).subscribe( r => this.founded = r);
+  }
+
+  addTorrent(t: FoundedTorrent, type: string) {
+    this.busy = this.searchService.add(t,type).subscribe();
   }
 
   public onChangeTable(config: any): any {

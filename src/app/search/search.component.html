@@ -2,9 +2,9 @@
   search works!
 </h1>
 
+<div class="col-lg-10">
 
-<div class="panel panel-default">
-  <div class="col-lg-6">
+  <div class="panel panel-default">
     <form class="form-horizontal" #searchForm="ngForm" (ngSubmit)="onSubmit()">
       <div class="input-group">
         <input type="text" class="form-control" id="query" name="query"
@@ -15,6 +15,7 @@
       </span>
       </div>
     </form>
+    <div [ngBusy]="busy"></div>
     <table class="table table-striped">
       <thead>
       <tr>
@@ -46,17 +47,25 @@
 
           <span *ngSwitchCase="'date'">{{t[column.name] | date:'dd.MM.y hh:mm'}}</span>
           <span *ngSwitchCase="'list'">
-          <span *ngFor="let e of t[column.name]">{{e}}</span>
-        </span>
+            <span *ngFor="let e of t[column.name]">{{e}}</span>
+          </span>
+
+          <span *ngSwitchCase="'byte'">{{t[column.name] | byte}}</span>
+
           <span *ngSwitchDefault class="word-break">{{t[column.name]}}</span>
         </td>
         <td>
-          <div class="btn-group nowrap" role="group">
-            <button type="button" class="btn btn-default btn-sm">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          <div class="btn-group" dropdown>
+            <button dropdownToggle type="button" class="btn btn-default dropdown-toggle">
+              Add as <span class="caret"></span>
             </button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+              <li role="menuitem"><a class="dropdown-item" (click)="addTorrent(t, 'movie')">Movie</a></li>
+              <li role="menuitem"><a class="dropdown-item" (click)="addTorrent(t, 'series')">Series</a></li>
+            </ul>
           </div>
         </td>
+
       </tr>
       </tbody>
     </table>

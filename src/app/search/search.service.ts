@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http} from "@angular/http";
+import {TorrentInfo} from "../torrents/torrents.service";
 
 
 export class FoundedTorrent {
@@ -39,6 +40,15 @@ export class SearchService {
       <any[]> response.json().rutracker.forEach(t => result.push(new FoundedTorrent(t)));
       return result;
     });
+  }
+
+  add(t: FoundedTorrent, type: string) {
+    let ti = new TorrentInfo(null);
+    ti.name = t.name;
+    ti.url = t.url;
+    ti.downloadDir = type === 'series' ? '/home/nektodev/Media/Series/' : '/home/nektodev/Media/Movies/';
+
+    return this.http.post("http://192.168.1.11:8081/attt/torrent", [ti])
   }
 
 }
