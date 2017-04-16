@@ -1,10 +1,17 @@
-<h1>
-  {{title.value}} <small>{{title.subtitle}}</small>
-</h1>
-<nav>
-  <a routerLink="torrents" routerLinkActive="active">torrents</a>
-  <a routerLink="search" routerLinkActive="active">search</a>
-  <a routerLink="settings" routerLinkActive="active">settings</a>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">{{title.value}} <small>{{title.subtitle}}</small></a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active"><a>Home</a></li>
+        <li routerLink="torrents" routerLinkActive="active"><a>Torrents</a></li>
+        <li routerLink="search" routerLinkActive="active"><a>Search</a></li>
+        <li routerLink="settings" routerLinkActive="active"><a>Settings</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
 
 <div *ngFor="let alert of alerts">
