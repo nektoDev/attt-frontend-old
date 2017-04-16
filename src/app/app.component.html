@@ -7,6 +7,10 @@
   <a routerLink="settings" routerLinkActive="active">settings</a>
 </nav>
 
+<div *ngFor="let alert of alerts">
+  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout"><span [innerHTML]="alert.msg"></span></alert>
+</div>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">

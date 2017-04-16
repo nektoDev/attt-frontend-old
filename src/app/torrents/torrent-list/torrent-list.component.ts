@@ -3,6 +3,7 @@ import {TorrentInfo, TorrentsService} from "../torrents.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {ModalDirective} from "ng2-bootstrap";
+import {AlertService} from "../../alert.service";
 
 @Component({
   selector: 'app-torrent-list',
@@ -13,7 +14,8 @@ export class TorrentListComponent implements OnInit {
 
   constructor(private torrensService: TorrentsService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private _alertService: AlertService) {
   }
 
 
@@ -36,8 +38,6 @@ export class TorrentListComponent implements OnInit {
   private torrents: Array<TorrentInfo> = [];
   private errorMessage;
   busy: Subscription;
-
-  alerts = [];
 
   @ViewChild('deleteModal') public deleteModal: ModalDirective;
   deleteModalTorrent: TorrentInfo;
@@ -104,7 +104,7 @@ export class TorrentListComponent implements OnInit {
     this.busy = this.torrensService.refreshTorrent(id).subscribe(
       next => {
         this.initTorrents();
-        this.alerts.push({
+        this._alertService.alerts.push({
           type: 'info',
           msg: next.replace(/\n/g, "<br/>"),
           timeout: 5000
@@ -124,7 +124,7 @@ export class TorrentListComponent implements OnInit {
     this.busy = this.torrensService.deleteTorrent(t.id).subscribe(
       next => {
         this.initTorrents();
-        this.alerts.push({
+        this._alertService.alerts.push({
           type: 'danger',
           msg: "Torrent deleted successfully",
           timeout: 5000

@@ -1,6 +1,7 @@
 import {Component, OnInit,} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {TorrentInfo, TorrentsService} from "../torrents.service";
+import {AlertService} from "../../alert.service";
 
 @Component({
   selector: 'app-torrent-detail',
@@ -12,10 +13,10 @@ export class TorrentDetailComponent implements OnInit {
   public torrent: TorrentInfo;
   public id: string;
   public error: any;
-  alerts = [];
 
   constructor(private route: ActivatedRoute,
-              private torrentsService: TorrentsService) {
+              private torrentsService: TorrentsService,
+              private _alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -42,14 +43,14 @@ export class TorrentDetailComponent implements OnInit {
   onSubmit() {
     this.torrentsService.saveTorrent(this.torrent).subscribe(
       s => {
-        this.alerts.push({
+        this._alertService.alerts.push({
           type: 'info',
           msg: "Torrent successfully saved!",
           timeout: 5000
         })
       },
       error => {
-        this.alerts.push({
+        this._alertService.alerts.push({
           type: 'danger',
           msg: error.text().replace(/\n/g, "<br/>"),
           timeout: 5000

@@ -9,6 +9,8 @@ import { TorrentsModule } from './torrents/torrents.module'
 import { AppRoutingModule }   from './app-routing.module';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CommonService} from "./common.service";
+import {AlertService} from "./alert.service";
+import {AlertModule} from "ng2-bootstrap";
 
 @NgModule({
   declarations: [
@@ -21,9 +23,10 @@ import {CommonService} from "./common.service";
     TorrentsModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AlertModule.forRoot(),
   ],
-  providers: [CommonService],
+  providers: [CommonService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

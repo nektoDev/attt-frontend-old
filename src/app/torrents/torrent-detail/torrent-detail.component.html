@@ -1,8 +1,4 @@
 <div class="row">
-  <div *ngFor="let alert of alerts">
-    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout"><span [innerHTML]="alert.msg"></span></alert>
-  </div>
-
   <div class="col-md-6">
     <div *ngIf="torrent">
       <h1>{{torrent.name}}</h1>
