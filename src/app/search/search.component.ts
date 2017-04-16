@@ -1,6 +1,7 @@
 import {Component, OnInit, Output} from '@angular/core';
 import {FoundedTorrent, SearchService} from "./search.service";
 import {Subscriber, Subscription} from "rxjs";
+import {CommonService} from "../common.service";
 
 @Component({
   selector: 'app-search',
@@ -25,7 +26,9 @@ export class SearchComponent implements OnInit {
     sorting: {},
   };
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService, private _common: CommonService) {
+    _common.title.subtitle = "Search";
+  }
 
   ngOnInit() {
     this.query = "Harry Potter"

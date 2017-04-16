@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TorrentInfo, TorrentsService} from "./torrents.service";
+import {CommonService} from "../common.service";
 
 @Component({
   selector: 'app-torrents',
@@ -10,7 +11,7 @@ import {TorrentInfo, TorrentsService} from "./torrents.service";
 })
 export class TorrentsComponent {
 
-  public title: string = "Torrents";
-  public constructor() {
+  public constructor(private _common: CommonService) {
+    _common.title.subtitle = "Torrents";
   }
 }
