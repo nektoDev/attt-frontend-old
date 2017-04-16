@@ -48,7 +48,7 @@ export class TorrentInfo {
 
 }
 
-const TORRENTS_URL = 'http://192.168.1.11:8081/attt/torrent'
+const TORRENTS_URL = 'http://192.168.1.11:8081/attt/'
 
 @Injectable()
 export class TorrentsService {
@@ -58,7 +58,7 @@ export class TorrentsService {
   }
 
   listTorrents() {
-    return this.http.get(TORRENTS_URL).map(response => {
+    return this.http.get(TORRENTS_URL + "torrent").map(response => {
         let result: TorrentInfo[] = [];
         <any[]> response.json().forEach(t => result.push(new TorrentInfo(t)));
         return result;
@@ -67,17 +67,17 @@ export class TorrentsService {
   }
 
   getTorrent(id: string) {
-    return this.http.get(TORRENTS_URL + "/" + id)
+    return this.http.get(TORRENTS_URL + "torrent/" + id)
       .map(response => new TorrentInfo(response.json()))
       .catch(this.handleError);
   }
 
   saveTorrent(t: TorrentInfo) {
-    return this.http.post(TORRENTS_URL, [t]);
+    return this.http.post(TORRENTS_URL + "torrent", [t]);
   }
 
   refreshTorrent(id: string) {
-    return this.http.get(TORRENTS_URL + "/forceCheck/" + id).map(response => response.text());
+    return this.http.get(TORRENTS_URL + "/checker/" + id).map(response => response.text());
   }
 
   deleteTorrent(id: string) {
