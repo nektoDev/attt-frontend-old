@@ -8,6 +8,7 @@ import { TorrentsModule } from './torrents/torrents.module'
 
 import { AppRoutingModule }   from './app-routing.module';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CommonService} from "./common.service";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
