@@ -29,6 +29,8 @@ body {
   padding-top: 70px !important;
 }
 
+button:focus {outline:0;}
+li:focus {outline:0;}
 
 /* Sticky footer styles
 -------------------------------------------------- */
