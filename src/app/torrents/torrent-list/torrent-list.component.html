@@ -28,23 +28,30 @@
     <tbody>
     <tr *ngFor="let t of torrents">
 
-      <td *ngFor="let column of columns" [ngSwitch]="column.type" class="col-md-{{column.size}}">
-
-        <div *ngSwitchCase="'checkbox'" class="ui check">
-          <input type="checkbox" class="text-center" [checked]="t[column.name]">
+      <td class="col-md-3">
+        <div class="word-break"><a href="{{t.url}}">{{t.name}}</a></div>
+      </td>
+      <td>
+        <div class="center-block">
+          <span class="glyphicon glyphicon-ok text-success center-block center-text" *ngIf="t.tracked"></span>
         </div>
-        <div *ngSwitchCase="'url'">
-          <a href="{{t[column.name]}}">{{t[column.name]}}</a>
+      </td>
+      <td>
+        <div>
+          <span *ngFor="let w of t.watchers">{{w}}</span>
         </div>
-        <div *ngSwitchCase="'check-mark'" class="center-block">
-          <span class="glyphicon glyphicon-ok text-success center-block center-text" *ngIf="t[column.name]"></span>
-        </div>
-
-        <span *ngSwitchCase="'date'">{{t[column.name] | date:'dd.MM.y hh:mm'}}</span>
-        <span *ngSwitchCase="'list'">
-          <span *ngFor="let e of t[column.name]">{{e}}</span>
-        </span>
-        <span *ngSwitchDefault class="word-break">{{t[column.name]}}</span>
+      </td>
+      <td>
+        <div>{{t.addDate | date:'dd.MM.y hh:mm'}}</div>
+      </td>
+      <td>
+        <div>{{t.finishDate | date:'dd.MM.y hh:mm'}}</div>
+      </td>
+      <td>
+        <div>{{t.lastCheckDate | date:'dd.MM.y hh:mm'}}</div>
+      </td>
+      <td>
+        <div>{{t.lastUpdateDate | date:'dd.MM.y hh:mm'}}</div>
       </td>
       <td>
         <div class="btn-group nowrap" role="group">
