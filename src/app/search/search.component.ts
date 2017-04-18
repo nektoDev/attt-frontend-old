@@ -16,7 +16,6 @@ export class SearchComponent implements OnInit {
 
   public columns: Array<any> = [
     {title: 'Name', name: 'name', sort: 'asc'},
-    {title: 'URL', name: 'url', type: "url", sort: 'asc'},
     {title: 'Category', name: 'category', sort: 'asc'},
     {title: 'Seeders', name: 'seeders', sort: 'asc'},
     {title: 'Size', name: 'size', sort: 'asc', type: 'byte'},

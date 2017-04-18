@@ -1,73 +1,44 @@
-<h1>
-  search works!
-</h1>
-
-<div class="col-lg-10">
-
-  <div class="panel panel-default">
-    <form class="form-horizontal" #searchForm="ngForm" (ngSubmit)="onSubmit()">
-      <div class="input-group">
-        <input type="text" class="form-control" id="query" name="query"
-               placeholder="Search for..."
-               [(ngModel)]="query">
-        <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">Search</button>
+<div class="panel panel-default">
+  <form class="form-horizontal" #searchForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="input-group">
+      <input type="text" class="form-control" id="query" name="query" autofocus
+             placeholder="Search..."
+             [(ngModel)]="query">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Search</button>
       </span>
-      </div>
-    </form>
-    <div [ngBusy]="busy"></div>
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th *ngFor="let column of columns" (click)="onHeaderClick(column)" class="nowrap">
+    </div>
+  </form>
+  <div [ngBusy]="busy"></div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th *ngFor="let column of columns" (click)="onHeaderClick(column)" class="nowrap">
         <span>
         {{column.title}}
         </span>
-          <span *ngIf="getColumnSort(column.name)">
+        <span *ngIf="getColumnSort(column.name)">
                 {{getColumnSort(column.name) === 'asc' ? '↑' : '↓'}}
         </span>
-        </th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let t of founded">
-
-        <td *ngFor="let column of columns" [ngSwitch]="column.type" class="col-md-{{column.size}}">
-
-          <div *ngSwitchCase="'checkbox'" class="ui check">
-            <input type="checkbox" class="text-center" [checked]="t[column.name]">
-          </div>
-          <div *ngSwitchCase="'url'">
-            <a href="{{t[column.name]}}">{{t[column.name]}}</a>
-          </div>
-          <div *ngSwitchCase="'check-mark'" class="center-block">
-            <span class="glyphicon glyphicon-ok text-success center-block center-text" *ngIf="t[column.name]"></span>
-          </div>
-
-          <span *ngSwitchCase="'date'">{{t[column.name] | date:'dd.MM.y hh:mm'}}</span>
-          <span *ngSwitchCase="'list'">
-            <span *ngFor="let e of t[column.name]">{{e}}</span>
-          </span>
-
-          <span *ngSwitchCase="'byte'">{{t[column.name] | byte}}</span>
-
-          <span *ngSwitchDefault class="word-break">{{t[column.name]}}</span>
-        </td>
-        <td>
-          <div class="btn-group" dropdown>
-            <button dropdownToggle type="button" class="btn btn-default dropdown-toggle">
-              Add as <span class="caret"></span>
-            </button>
-            <ul *dropdownMenu class="dropdown-menu" role="menu">
-              <li role="menuitem"><a class="dropdown-item" (click)="addTorrent(t, 'movie')">Movie</a></li>
-              <li role="menuitem"><a class="dropdown-item" (click)="addTorrent(t, 'series')">Series</a></li>
-            </ul>
-          </div>
-        </td>
-
-      </tr>
-      </tbody>
-    </table>
-  </div>
+      </th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let t of founded">
+      <td class="col-md-6">
+        <div class="word-break"><a href="{{t.url}}">{{t.name}}</a></div>
+      </td>
+      <td class="">
+        <div class="">{{t.category}}</div>
+      </td>
+      <td class="">
+        <div class="">{{t.seeders}}</div>
+      </td>
+      <td class="">
+        <div class="">{{t.size | byte}}</div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
